@@ -10,6 +10,8 @@
 <header>
     <nav>
         <a href="/">Главная</a>
+        <a href="/article/1">  ***Конкретная статья ****</a>
+        <a href="/categories">Категории</a>
     </nav>
 </header>
 
