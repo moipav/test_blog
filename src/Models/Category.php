@@ -26,4 +26,14 @@ class Category
         $query = "SELECT * FROM categories WHERE id = :id";
         return $this->db->fetch($query, ['id' => $id]);
     }
+
+    /**
+     * Найти категорию по slug
+     */
+    public function findBySlug(string $slug): array|false
+    {
+        $query = "SELECT * FROM categories WHERE slug = :slug LIMIT 1";
+        return $this->db->fetch($query, ['slug' => $slug]);
+    }
+
 }
