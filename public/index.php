@@ -28,7 +28,8 @@ $routeInfo = FastRoute\simpleDispatcher($routeCollector)->dispatch($httpMethod, 
 
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
-        handleNotFound($templateEngine);
+        http_response_code(404);
+        (new NotFoundController($templateEngine))->index();
         break;
 
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
@@ -47,10 +48,4 @@ switch ($routeInfo[0]) {
             default => (new NotFoundController($templateEngine))->index()
         };
         break;
-}
-
-function handleNotFound(TemplateEngine $templateEngine): void
-{
-    http_response_code(404);
-    $templateEngine->render('pages/404.tpl');
 }
