@@ -36,4 +36,19 @@ class Category
         return $this->db->fetch($query, ['slug' => $slug]);
     }
 
+    /**
+     * Получить все категории, в которых есть статьи
+     */
+    public function getAllWithArticles(): array
+    {
+        $query = "
+            SELECT DISTINCT c.*
+            FROM categories c
+            INNER JOIN category_article ca ON c.id = ca.category_id
+            ORDER BY c.name ASC
+        ";
+
+        return $this->db->fetchAll($query);
+    }
+
 }

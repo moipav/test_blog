@@ -32,7 +32,6 @@ class Article
             FROM articles a
             INNER JOIN category_article ca ON a.id = ca.article_id
             WHERE ca.category_id = :category_id
-              AND a.published_at IS NOT NULL
             ORDER BY a.published_at DESC
             LIMIT :limit
         ";
