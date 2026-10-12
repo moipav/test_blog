@@ -141,16 +141,17 @@ class Article
             WHERE ca.category_id IN (
                 SELECT category_id 
                 FROM category_article 
-                WHERE article_id = :article_id
+                WHERE article_id = :article_id_1
             )
-            AND a.id != :article_id
+            AND a.id != :article_id_2
             AND a.published_at IS NOT NULL
             ORDER BY a.published_at DESC
             LIMIT :limit
         ";
 
         return $this->db->fetchAll($query, [
-            'article_id' => $articleId,
+            'article_id_1' => $articleId,
+            'article_id_2' => $articleId,
             'limit' => $limit,
         ]);
     }

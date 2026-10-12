@@ -4,15 +4,22 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Models\Article;
+use App\Models\Category;
 use App\Services\TemplateEngine;
 
 class ArticleController
 {
     private templateEngine $template;
+    private Category $category;
+    private Article $article;
 
+    private int $perPage = 9;
     public function __construct(TemplateEngine $template)
     {
         $this->template = $template;
+        $this->category = new Category();
+        $this->article = new Article();
     }
 
 /*
@@ -27,19 +34,24 @@ class ArticleController
         - ○ Кол-во просмотров
         - ○ Вывести блок из 3 похожих статей
 */
-    public function index($id): void
+    public function index(int $id): void
     {
-        $article = [
-            'id' => $id,
-            'image' => '',
-            'title' => 'заголовок',
-            'description' => 'описание статьи',
-            'text' => 'текст статьи',
-            'categories' => ['новости','погода','спорт'],
-            'views' => 0,
-            'related_articles' => [],
-        ];
+        $article = $this->article->getArticle($id);
 
-        $this->template->render('pages/article.tpl', ['article' => $article]);
+        if (!$article) {
+            http_response_code(404);
+            $this->template->render('pages/404.tpl');
+            return;
+        }
+        //увеличиваем счетчик просмотров
+        $this->article->incrementViews((int)$article['id']);
+        //получаем похожие статьи
+        $categories = $this->article->getCategories((int)$article['id']);
+        $relatedArticles = $this->article->getRelated((int)$article['id']);
+        $this->template->render('pages/article.tpl', [
+            'article' => $article,
+            'categories' => $categories,
+            'relatedArticles' => $relatedArticles,
+        ]);
     }
 }

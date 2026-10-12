@@ -96,7 +96,7 @@ try {
             'slug' => $slug,
             'description' => $faker->paragraph(2),
             'content' => $content,
-            'image' => 'article_' . $i . '.jpg',
+            'image' => '/uploads/image.jpg',
             'views' => $faker->numberBetween(10, 5000),
             'published_at' => $faker->dateTimeBetween('-60 days', 'now')->format('Y-m-d H:i:s'),
         ];
