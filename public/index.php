@@ -20,6 +20,7 @@ $httpMethod = $_SERVER['REQUEST_METHOD'];
 
 $routeCollector = function (FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'HomePage');
+    $r->addRoute('GET', '/category/{id}', 'showOneCategory');
     $r->addRoute('GET', '/categories', 'CategoryPage');
     $r->addRoute('GET', '/article/{id}', 'ArticlePage');
 };
@@ -44,6 +45,7 @@ switch ($routeInfo[0]) {
         match ($handler) {
             'HomePage' => (new HomeController($templateEngine))->index(),
             'CategoryPage' => (new CategoryController($templateEngine))->index(),
+            'showOneCategory' => (new CategoryController($templateEngine))->show(1),
             'ArticlePage' => (new ArticleController($templateEngine))->index($vars['id']),
             default => (new NotFoundController($templateEngine))->index()
         };
