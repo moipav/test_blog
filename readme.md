@@ -31,3 +31,7 @@ docker-compose exec php composer install
 docker exec -i blog_mysql mysql -u root -proot_secret blog < database/migrations/001_create_tables.sql
 ### 6.Запустить сиды
 docker-compose exec php php bin/seed.php
+
+### 7.Открыть в браузере
+   Блог: http://localhost:8080
+   phpMyAdmin: http://localhost:8081
