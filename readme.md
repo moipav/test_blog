@@ -11,34 +11,6 @@
 - FastRoute
 - Faker
 
-## Структура проекта
-
-blog/
-├── bin/
-│ └── seed.php # Скрипт сидинга БД
-├── cache/
-│ └── smarty/ # Кэш шаблонов (создаётся автоматически)
-├── database/
-│ └── migrations/ # SQL-миграции
-├── docker/
-│ ├── nginx/ # Конфигурация Nginx
-│ └── php/ # Dockerfile для PHP
-├── public/ # Web root
-│ ├── css/
-│ ├── index.php # Фронт-контроллер
-│ └── uploads/ # Изображения
-├── src/
-│ ├── Controllers/ # Контроллеры
-│ ├── Models/ # Модели
-│ └── Services/ # Сервисы (Database, TemplateEngine)
-├── templates/
-│ ├── layouts/ # Базовые шаблоны
-│ └── pages/ # Шаблоны страниц
-├── docker-compose.yml
-├── composer.json
-└── .env.example
-
-
 ## Установка
 
 ### 1. Клонировать репозиторий
