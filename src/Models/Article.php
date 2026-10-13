@@ -10,9 +10,9 @@ class Article
 {
     private Database $db;
 
-    public function __construct()
+    public function __construct(Database $db)
     {
-        $this->db = new Database();
+        $this->db = $db;
     }
 
     public function getArticle(int $id): array|false

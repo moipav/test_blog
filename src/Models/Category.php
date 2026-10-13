@@ -9,9 +9,9 @@ use App\Services\Database;
 class Category
 {
     private readonly Database $db;
-    public function __construct()
+    public function __construct(Database $db)
     {
-        $this->db = new Database();
+        $this->db = $db;
     }
 
     public function findAll(): array

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Helpers\H;
 use App\Models\Article;
 use App\Models\Category;
+use App\Services\Database;
 use App\Services\TemplateEngine;
 
 class HomeController
@@ -15,22 +15,13 @@ class HomeController
     private Category $category;
     private Article $article;
 
-    public function __construct(TemplateEngine $template)
+    public function __construct(TemplateEngine $template, Database $db)
     {
         $this->template = $template;
-        /*
-         * TODO переделать на DI
-         * */
-        $this->category = new Category();
-        $this->article = new Article();
+        $this->category = new Category($db);
+        $this->article = new Article($db);
     }
 
-    /*
-     * ● Главная страница:
-
-            ○ Вывести каждую категорию, в которой есть статьи и отобразить 3 последних поста (по дате публикации).
-            ○ Вывести кнопку “Все статьи” для каждой категории.
-    */
     public function index(): void
     {
         $categories = $this->category->getAllWithArticles();

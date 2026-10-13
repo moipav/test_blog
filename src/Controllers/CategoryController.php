@@ -7,6 +7,7 @@ namespace App\Controllers;
 use App\Helpers\H;
 use App\Models\Article;
 use App\Models\Category;
+use App\Services\Database;
 use App\Services\TemplateEngine;
 
 class CategoryController
@@ -17,11 +18,11 @@ class CategoryController
 
     private int $perPage = 9;
 
-    public function __construct(TemplateEngine $template)
+    public function __construct(TemplateEngine $template, Database $db)
     {
         $this->template = $template;
-        $this->category = new Category();
-        $this->article = new Article();
+        $this->category = new Category($db);
+        $this->article = new Article($db);
     }
 
     public function index(): void

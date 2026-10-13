@@ -35,7 +35,7 @@
                 {foreach $articles as $article}
                     <article class="article-card">
                         {if $article.image}
-                            <img src="/uploads/{$article.image}" alt="{$article.title}" class="article-image">
+                            <img src="{$article.image}" alt="{$article.title}" class="article-image" width="100">
                         {/if}
                         <div class="article-content">
                             <h3>
