@@ -23,11 +23,18 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Создаем папки и даем права пользователю www-data (UID 82 в Alpine)
-RUN mkdir -p cache/smarty/compile cache/smarty/cache cache/smarty/configs \
-    && chown -R www-data:www-data cache
+# Создаём необходимые папки для кэша Smarty и даём права пользователю www-data
+RUN mkdir -p cache/smarty/compile \
+    && mkdir -p cache/smarty/cache \
+    && mkdir -p cache/smarty/configs \
+    && mkdir -p public/uploads \
+    && chown -R www-data:www-data cache \
+    && chown -R www-data:www-data public/uploads \
+    && chmod -R 755 cache \
+    && chmod -R 755 public/uploads
 
-# Настройка прав
+# Настройка прав для всей рабочей директории
 RUN chown -R www-data:www-data /var/www/html
+
 EXPOSE 9000
 CMD ["php-fpm"]

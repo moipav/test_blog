@@ -1,3 +1,11 @@
 /vendor/
 .env
 .idea
+
+# Кэш Smarty (содержимое игнорируется, но папки создаются автоматически)
+/cache/smarty/compile/*
+/cache/smarty/cache/*
+/cache/smarty/configs/*
+!/cache/smarty/compile/.gitkeep
+!/cache/smarty/cache/.gitkeep
+!/cache/smarty/configs/.gitkeep

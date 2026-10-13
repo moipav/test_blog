@@ -10,7 +10,8 @@
         {if $categories}
             {foreach $categories as $category}
                 <ul>
-                    <a href="/categories/{$category.id}"><h3>{$category.name}</h3></a>
+                    <h3>{$category.name}</h3>
+                    <a class="btn btn-primary" href="/categories/{$category.id}">Все статьи</a>
                     <p class="category-description">{$category.description}</p>
                     {if $category.articles}
                     <div class="articles-grid>">
@@ -18,8 +19,7 @@
                             <ul>
                                 <li>
                                     {if $article.image}
-                                        <img src="{$article.image}" alt="{$article.title}"
-                                             class="article-image" width="100">
+                                        <img src="{$article.image}" alt="{$article.title}" width="100">
                                     {/if}
                                     <h3>
                                         <a href="/article/{$article.id}">{$article.title}</a>
